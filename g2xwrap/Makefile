@@ -3,7 +3,7 @@ LDFLAGS=-Wl,--disable-auto-image-base -Wl,--dynamicbase -Wl,--nxcompat
 LIBS=-L. -lglide2x.dll
 TARGET3=glide3x.dll
 TARGET1=glide.dll
-PEXPORTS=pexports
+GENDEF=gendef
 
 .PHONY: sanity clean
 
@@ -13,7 +13,7 @@ all: sanity $(TARGET3) $(TARGET1)
 
 sanity:
 	@if [ "$$MSYSTEM" != "MINGW32" ]; then echo "Error: MSYSTEM == $$MSYSTEM"; exit 1; fi
-	$(PEXPORTS) ../build/.libs/libglide2x.dll | sed "s/^_//" > /tmp/dll.def
+	$(GENDEF) - ../build/.libs/libglide2x.dll | sed "s/\(@[0-9]*\)@.*/\1/;s/^_//" > /tmp/dll.def
 	dlltool -U -d /tmp/dll.def -l libglide2x.dll.a
 
 $(TARGET3): gl301wrp.def wr301dll.cpp
