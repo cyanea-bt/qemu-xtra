@@ -1,0 +1,15 @@
+/build/**/*
+/openglide/autom4te.cache/**/*
+
+Makefile.in
+*.dll
+*.dll.a
+
+/openglide/aclocal.m4
+/openglide/compile
+/openglide/config.*
+/openglide/configure
+/openglide/depcomp
+/openglide/install-sh
+/openglide/ltmain.sh
+/openglide/missing
